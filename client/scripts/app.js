@@ -1,6 +1,6 @@
 class App {
   constructor() {
-    this.server = 'http://parse.sfm8.hackreactor.com/';
+    this.server = 'http://parse.sfm8.hackreactor.com/chatterbox/classes/messages';
   }
 
   init() {
@@ -9,7 +9,6 @@ class App {
 
   send(message) {
     $.ajax({
-      // This is the url you should use to communicate with the parse API server.
       url: 'http://parse.sfm8.hackreactor.com/chatterbox/classes/messages',
       type: 'POST',
       data: JSON.stringify(message),
@@ -18,27 +17,34 @@ class App {
         console.log('chatterbox: Message sent');
       },
       error: function (data) {
-        // See: https://developer.mozilla.org/en-US/docs/Web/API/console.error
         console.error('chatterbox: Failed to send message', data);
       }
     });
   }
 
-  send(message) {
+  fetch() {
     $.ajax({
-      // This is the url you should use to communicate with the parse API server.
       url: 'http://parse.sfm8.hackreactor.com/chatterbox/classes/messages',
-      type: 'POST',
+      type: 'GET',
       data: JSON.stringify(message),
       contentType: 'application/json',
       success: function (data) {
-        console.log('chatterbox: Message sent');
+        console.log('chatterbox: Message retrived');
       },
       error: function (data) {
-        // See: https://developer.mozilla.org/en-US/docs/Web/API/console.error
-        console.error('chatterbox: Failed to send message', data);
+        console.error('chatterbox: Failed to retrive message', data);
       }
     });
+  }
+  
+  clearMessages() {
+    $('#chats').empty();
+  }
+
+  renderMessage(message) {
+    var node = document.createElement('div');
+    node.innerText = message.text;
+    $('#chats').append(node);
   }
 }
 
