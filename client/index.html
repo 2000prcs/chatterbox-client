@@ -4,10 +4,13 @@
     <meta charset="utf-8">
     <title>chatterbox</title>
     <link rel="stylesheet" href="styles/styles.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
     <!-- dependencies -->
     <script src="bower_components/jquery/dist/jquery.js"></script>
     <script src="bower_components/underscore/underscore.js"></script>
+    <script src="bower_components/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <script>
       // YOU DO NOT NEED TO EDIT THIS CODE
       if (!/(&|\?)username=/.test(window.location.search)) {
@@ -27,7 +30,42 @@
     <div id="main">
       <h1>chatterbox</h1>
       <!-- Your HTML goes here! -->
+      <div class="dropdown" id="rooms">
+        <button class="btn btn-sm btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+         Room:
+        </button>
+        <div class="dropdown-menu" id="roomSelect" aria-labelledby="dropdownMenuButton">
+        </div>
+      </div>
+      
+      <p>
+        <a class="btn btn-sm btn-primary" id="friends" data-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">Friends</a>
+      </p>
+      <div class="row">
+        <div class="col">
+          <div class="collapse multi-collapse" id="multiCollapseExample1">
+            <div class="card card-body">
+              
+            </div>
+          </div>
+        </div>
+      </div>
+            
+  
+      <form>
+        <div class="form-group">
+          <label for="title">Chat Here!</label>
+          <input type="message" class="form-control" id="text" placeholder="type here">
+
+        </div>
+        <button id="submit" type="submit" class="btn btn-sm btn-primary">Submit</button>
+      </form>
     </div>
+    <!-- <div id="rooms">
+      Room:
+      <select id="roomSelect">
+      </select>
+    </div> -->
     <div id="chats">
     </div>
   </body>

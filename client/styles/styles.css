@@ -6,7 +6,7 @@ body {
 }
 
 #main, #chats {
-    width: 500px;
+    width: 700px;
     margin: auto;
     text-align: left;
     background: white;
@@ -87,4 +87,14 @@ form input[type=text] {
     color: #fff;
     background-color: #0090da;
 }
+
+#submit {
+    float: right;
+}
+
+#friends {
+    margin-top: 10px;
+    float: center;
+}
+
 

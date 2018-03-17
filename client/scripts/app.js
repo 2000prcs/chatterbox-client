@@ -4,7 +4,8 @@ class App {
   }
 
   init() {
-    return;
+    $('.username').on('click', this.handleUsernameClick());
+    $('#send .submit').on('submit', app.handleSubmit());
   }
 
   send(message) {
@@ -45,7 +46,31 @@ class App {
     var node = document.createElement('div');
     node.innerText = message.text;
     $('#chats').append(node);
+
+    var user = document.createElement('div');
+    var username = message.username;
+    user.innerText = username;
+    $(user).addClass('.username');
+    $('#main').append(user);
+
+  }
+
+  renderRoom(string) {
+    var room = document.createElement('a');
+    room.innerText = string;    
+    $(room).addClass('dropdown-item');
+    $('#roomSelect').append(room);
+  }
+  
+  handleUsernameClick() {
+    console.log('clicked');
+  }
+  
+  handleSubmit() {
+    console.log('submit');
   }
 }
 
 var app = new App();
+
+
