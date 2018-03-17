@@ -1,11 +1,10 @@
 class App {
-  constructor() {
-    this.server = 'http://parse.sfm8.hackreactor.com/chatterbox/classes/messages';
-  }
 
   init() {
+    this.server = 'http://parse.sfm8.hackreactor.com/chatterbox/classes/messages';
     $('.username').on('click', this.handleUsernameClick());
     $('#send .submit').on('submit', app.handleSubmit());
+    setInterval(this.renderMessage(this.fetch(), 300));
   }
 
   send(message) {
@@ -52,11 +51,10 @@ class App {
     user.innerText = username;
     $(user).addClass('.username');
     $('#main').append(user);
-
   }
 
   renderRoom(string) {
-    var room = document.createElement('a');
+    var room = document.createElement('option');
     room.innerText = string;    
     $(room).addClass('dropdown-item');
     $('#roomSelect').append(room);
@@ -67,7 +65,12 @@ class App {
   }
   
   handleSubmit() {
-    console.log('submit');
+    var message = {
+      username: 'mo',
+      text: 'haha',
+      roomname: 'lobby'
+    };
+    this.send(message);
   }
 }
 
