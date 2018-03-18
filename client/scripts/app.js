@@ -2,10 +2,11 @@ class App {
 
   init() {
     this.server = 'http://parse.sfm8.hackreactor.com/chatterbox/classes/messages';
-
+    this.room = {};
     $('.refresh').on('click', this.fetch());
     $('.username').on('click', this.handleUsernameClick.bind(this));
-    $('#send .submit').on('submit', this.handleSubmit.bind(this));
+    // $('#send .submit').on('submit', this.handleSubmit.bind(this));
+    $('#roomSelect').on('change', this.handleRoomChange);
   }
 
   send(message) {
@@ -30,11 +31,7 @@ class App {
       dataType: 'JSON',
       data: 'order=-createdAt',
       success: function (data) {
-        var data = data;
-        var sortedData = data['results'].sort(function(a, b) {
-          return a.createdAt > b.createdAt ? -1 : 1;
-        });
-        sortedData.forEach(obj => {
+        data.results.forEach(obj => {
           app.renderMessage(obj);
           app.renderRoom(obj.roomname);
         });
@@ -56,36 +53,18 @@ class App {
     $(chat).addClass('username');
     $(chat).attr('data-user', message.username);
     $('.username').on('click', this.handleUsernameClick);
-    $(chat).appendTo('#chats');
-      
-    // var timeStamp = document.createElement('div')
-    // $(timeStamp).addClass('.timeStamp');
-    // $(timeStamp).css('font-style', 'oblique');
-    // timeStamp.innerText = message.createdAt;
-    // $('#chats').append(timeStamp);
-    // var user = $('<div class=username></div>');
-    // var username = message.username;
-    // user.text(username).attr('data-user', username);
-    // $('.username').on('click', this.handleUsernameClick);
-    // $(user).css('font-weight', 'Bold');
-    // $(user).appendTo('#chats');
-
-
-    // if(message.text){
-    //   var node = document.createElement('div');
-    //   $(node).addClass('.text');
-    //   node.innerText = message.text;
-    //   $('#chats').append(node);
-    // }
-
-  
+    $(chat).appendTo('#chats');  
   }
 
   renderRoom(string) {
     var room = document.createElement('option');
-    room.innerText = string;    
-    $(room).addClass('dropdown-item');
-    $('#roomSelect').append(room);
+    if (!this.room[string] && string) {
+      this.room[string] = string;
+      room.innerText = string;  
+      $(room).attr('data-roomname', string);  
+      $(room).addClass('dropdown-item');
+      $('#roomSelect').append(room);
+    }
   }
   
   handleUsernameClick() {
@@ -95,16 +74,18 @@ class App {
   handleSubmit() {
     var input = $('input:first').val();
     var newSearch = window.location.search.slice(10);
-    console.log(input);
     var message = {
       username: newSearch,
       text: input,
-      roomname: 'lobby'
+      roomname: this.roomname || 'mo&leader\'s room'
     };
     this.send(message);
     this.clearMessages();
     this.fetch();
-    
+  }
+
+  handleRoomChange(event) {
+    this.roomname = event;
   }
 }
 

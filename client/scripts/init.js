@@ -6,7 +6,7 @@ $(document).ready(function() {
   $('.username').on('click', function() {
     app.handleUsernameClick();
   });
-  $('#send .submit').on('submit', function() {
-    app.handleSubmit();
-  });
+  // $('#send .submit').on('submit', function() {
+  //   app.handleSubmit();
+  // });
 });
