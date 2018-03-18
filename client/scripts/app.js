@@ -58,7 +58,7 @@ class App {
 
   renderRoom(string) {
     var room = document.createElement('option');
-    if(!this.room[string] && string){
+    if (!this.room[string] && string) {
       this.room[string] = string;
       room.innerText = string;  
       $(room).attr('data-roomname', string);  
@@ -84,7 +84,7 @@ class App {
     this.fetch();
   }
 
-  handleRoomChange(event){
+  handleRoomChange(event) {
     this.roomname = event;
   }
 }
