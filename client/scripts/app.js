@@ -5,7 +5,7 @@ class App {
     this.room = {};
     $('.refresh').on('click', this.fetch());
     $('.username').on('click', this.handleUsernameClick.bind(this));
-    // $('#send .submit').on('submit', this.handleSubmit.bind(this));
+    $('#send .submit').on('submit', this.handleSubmit.bind(this));
     $('#roomSelect').on('change', this.handleRoomChange);
   }
 
