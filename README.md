@@ -1,2 +1,2 @@
-#chatterbox-client
-This is a project I completed as a student at [hackreactor](http://hackreactor.com). This project was worked on with a pair.
+# Chatterbox Client
+> This is a real-time chatting application utilized AJAX 
